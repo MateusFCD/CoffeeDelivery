@@ -1,53 +1,99 @@
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
+import { RegularText, TitleText } from "../../../../components/Typography";
 
-export const Card = styled.div`
-  width: 256px;
-  height: 310px;
-
-  background: ${(props) => props.theme["gray-100"]};
-  border-radius: 6px 36px;
-
+export const CoffeeCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
 
-  h3 {
-    background: ${(props) => props.theme["yellow-100"]};
-    color: ${(props) => props.theme["yellow-900"]};
-    border-radius: 100px;
-    padding: 4px 8px;
-    width: 81px;
-    height: 21px;
+  width: 100%;
+  padding: 1.25rem;
+  padding-top: 0;
 
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 10px;
-    line-height: 130%;
+  border-radius: 6px 36px 6px 36px;
+
+  background: ${({ theme }) => theme.colors["base-card"]};
+
+  img {
+    /* width: 7.5rem;
+    height: 7.5rem; */
+    margin-top: -1.25rem;
+  }
+`;
+
+export const Tags = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+
+  span {
+    background: ${({ theme }) => theme.colors["brand-yellow-light"]};
+    color: ${({ theme }) => theme.colors["brand-yellow-dark"]};
+    font-size: ${({ theme }) => theme.textSizes["components-tag"]};
     text-transform: uppercase;
-
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-family: "Baloo 2";
-    font-style: normal;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 130%;
-    color: ${(props) => props.theme["gray-800"]};
-    margin-bottom: 8px;
   }
+`;
 
-  p {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 130%;
-    color: ${(props) => props.theme["gray-600"]};
-    margin-bottom: 33px;
+export const Name = styled(TitleText).attrs({
+  size: "s",
+  color: "subtitle",
+  weight: "700",
+})`
+  margin-bottom: 0.5rem;
+`;
+
+export const Description = styled(RegularText).attrs({
+  size: "s",
+  color: "label",
+})`
+  margin-bottom: 2rem;
+`;
+
+export const CardFooter = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    p {
+      line-height: 0.75rem;
+    }
+  }
+`;
+
+export const AddCartWrapper = styled.div`
+  width: 7.5rem;
+
+  > button {
+    width: 2.375rem;
+    height: 2.375rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: ${({ theme }) => theme.colors["brand-purple-dark"]};
+    color: ${({ theme }) => theme.colors["base-card"]};
+    border-radius: 6px;
+    margin-left: 0.3rem;
+    transition: 0.4s;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors["brand-purple"]};
+    }
   }
 `;

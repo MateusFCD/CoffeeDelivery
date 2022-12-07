@@ -1,46 +1,61 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 2rem 0;
 
-  div {
+  height: 6.5rem;
+  width: 100%;
+
+  background: ${(props) => props.theme.colors["base-background"]};
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  > div {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
-
-    span {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      gap: 4px;
-      padding: 0.5rem;
-
-      border-radius: 6px;
-
-      background: ${(props) => props.theme["purple-100"]};
-      color: ${(props) => props.theme["purple-900"]};
-      
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 18.2px;
-    }
-
-    nav {
-      a {
-        background: ${(props) => props.theme["yellow-100"]};
-        padding: 0.5rem;
-        border-radius: 6px;
-
-        display: flex;
-        justify-content: center;
-
-        color: ${(props) => props.theme["yellow-900"]};
-      }
-    }
+    width: 100%;
   }
+`;
+
+export const HeaderButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+interface HeaderButtonProps {
+  variant: "purple" | "yellow";
+}
+
+export const HeaderButton = styled.button<HeaderButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 6px;
+  border: none;
+  padding: 0 0.5rem;
+  position: relative;
+  font-size: ${(props) => props.theme.textSizes["text-regular-s"]};
+
+  ${({ variant, theme }) => css`
+    background: ${theme.colors[`brand-${variant}-light`]};
+    color: ${theme.colors[`brand-${variant}-dark`]};
+  `}
+
+  ${({ variant, theme }) =>
+    variant === "purple" &&
+    css`
+      svg {
+        color: ${theme.colors["brand-purple"]};
+      }
+    `}
 `;
