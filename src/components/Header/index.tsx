@@ -11,15 +11,20 @@ export function Header() {
   return (
     <HeaderContainer>
       <div className="container">
-        <img src={logoCoffeDelivery} alt="Logo Coffe Delivery" />
+        <NavLink to="/">
+          <img src={logoCoffeDelivery} alt="Logo Coffe Delivery" />
+        </NavLink>
         <HeaderButtonsContainer>
           <HeaderButton variant="purple">
             <MapPin size={20} weight="fill" />
             Brasília, DF
           </HeaderButton>
-          <HeaderButton variant="yellow">
-            <ShoppingCart size={20} weight="fill" />
-          </HeaderButton>
+
+          <NavLink to="/completeOrder">
+            <HeaderButton variant="yellow">
+              <ShoppingCart size={20} weight="fill" />
+            </HeaderButton>
+          </NavLink>
         </HeaderButtonsContainer>
       </div>
     </HeaderContainer>
