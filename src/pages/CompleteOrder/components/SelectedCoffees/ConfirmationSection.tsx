@@ -1,28 +1,43 @@
 import { Button } from "../../../../components/Button";
 import { RegularText } from "../../../../components/Typography";
+import { useCart } from "../../../../hooks/useCart";
+import { formatMoney } from "../../../../utils/formatMoney";
 import { ConfirmationSectionContainer } from "./styles";
 
+const DELIVEY_PRICE = 3.5;
+
 export function ConfirmationSection() {
+  const { cartItemsTotal, cartQuantity } = useCart();
+  const cartTotal = DELIVEY_PRICE + cartItemsTotal;
+
+  const formattedItemsTotal = formatMoney(cartItemsTotal);
+  const formattedCartTotal = formatMoney(cartTotal);
+  const formattedDeliveryPrice = formatMoney(DELIVEY_PRICE);
+
   return (
     <ConfirmationSectionContainer>
       <div>
         <RegularText size="s">Total de Itens</RegularText>
-        <RegularText>R$ 9,90</RegularText>
+        <RegularText>R$ {formattedItemsTotal}</RegularText>
       </div>
       <div>
         <RegularText size="s">Entrega</RegularText>
-        <RegularText>R$ 3,50</RegularText>
+        <RegularText>R$ {formattedDeliveryPrice}</RegularText>
       </div>
       <div>
         <RegularText weight="700" color="subtitle" size="l">
           Total de Itens
         </RegularText>
         <RegularText weight="700" color="subtitle" size="l">
-          R$ 29,90
+          R$ {formattedCartTotal}
         </RegularText>
       </div>
 
-      <Button text="confirmar pedido" />
+      <Button
+        text="confirmar pedido"
+        disabled={cartQuantity <= 0}
+        type="submit"
+      />
     </ConfirmationSectionContainer>
   );
 }
